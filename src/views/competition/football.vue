@@ -202,9 +202,9 @@ const handleClose = async row => {
       <el-form-item label="主队名称" prop="homeTeamName">
         <el-input v-model="form.homeTeamName" placeholder="请输入" clearable />
       </el-form-item>
-      <el-form-item label="客队名称" prop="awayTeamName">
+      <!-- <el-form-item label="客队名称" prop="awayTeamName">
         <el-input v-model="form.awayTeamName" placeholder="请输入" clearable />
-      </el-form-item>
+      </el-form-item> -->
       <!-- <el-form-item label="赛事类型" prop="sportsType">
         <el-select v-model="form.sportsType" placeholder="请选择">
           <el-option label="足球" :value="1" />
