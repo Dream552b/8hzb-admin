@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          cd 8hzb-admin # 进入项目目录
+          # cd 8hzb-admin # 进入项目目录
           pnpm install  # 安装依赖
           pnpm run build  # 执行打包
   
