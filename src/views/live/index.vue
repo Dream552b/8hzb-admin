@@ -17,7 +17,6 @@ defineOptions({
   name: "LiveIndex"
 });
 const form = ref<any>({
-  // status: ""
   sportsType: 0,
   liveStatus: 0,
   liveName: "",
