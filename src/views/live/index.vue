@@ -18,8 +18,8 @@ defineOptions({
 });
 const form = ref<any>({
   // status: ""
-  sportsType: "",
-  liveStatus: "",
+  sportsType: 0,
+  liveStatus: 0,
   liveName: "",
   nickName: ""
 });
