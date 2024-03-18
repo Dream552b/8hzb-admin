@@ -21,7 +21,7 @@ const form = ref<any>({
   sportsType: "",
   liveStatus: "",
   liveName: "",
-  nickname: ""
+  nickName: ""
 });
 const loading = ref<boolean>();
 const addLiveRef = ref<any>();
@@ -240,7 +240,7 @@ const onStartLive = async row => {
             <el-input placeholder="直播间名称" v-model="form.liveName" />
           </el-form-item>
           <el-form-item style="margin-right: 12px">
-            <el-input placeholder="主播用户名" v-model="form.nickname" />
+            <el-input placeholder="主播用户名" v-model="form.nickName" />
           </el-form-item>
 
           <!-- <el-form-item style="margin-right: 12px">
