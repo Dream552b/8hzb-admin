@@ -79,8 +79,8 @@ const getList = async () => {
   try {
     loading.value = true;
     const params = {
-      page: pagination.value.pageSize,
-      limit: pagination.value.pageNum,
+      page: pagination.value.pageNum,
+      limit: pagination.value.pageSize,
       ...form.value
     };
     const res: any = await getLiveList(params);
