@@ -24,8 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          # cd 8hzb-admin # 进入项目目录
-          pnpm install  # 安装依赖
+          pnpm install --no-frozen-lockfile # 安装依赖
           pnpm run build  # 执行打包
   
       # 连接到ssh，并且做一个拷贝操作的action
