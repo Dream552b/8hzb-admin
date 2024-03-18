@@ -63,6 +63,10 @@ const columns = ref<any>([
   //   }
   // },
   {
+    label: "联赛名称",
+    prop: "competitionName"
+  },
+  {
     label: "主队名称",
     prop: "homeTeamName"
   },
