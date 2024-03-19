@@ -7,6 +7,7 @@ import {
 } from "@/api/live/index";
 import Pagination from "@/components/Pagination/index.vue";
 import { ElMessage } from "element-plus";
+import dayjs from "dayjs";
 defineOptions({
   name: "AddLiveDialog"
 });
@@ -65,6 +66,13 @@ const columns = ref<any>([
   {
     label: "联赛名称",
     prop: "competitionName"
+  },
+  {
+    label: "开赛时间",
+    prop: "matchTime",
+    formatter: (row, col, val) => {
+      return dayjs.unix(val).format("YYYY-MM-DD HH:mm:ss");
+    }
   },
   {
     label: "主队名称",

@@ -72,6 +72,13 @@ const columns = ref<any>([
   //   }
   // },
   {
+    label: "开赛时间",
+    prop: "matchTime",
+    formatter: (row, col, val) => {
+      return dayjs.unix(val).format("YYYY-MM-DD HH:mm:ss");
+    }
+  },
+  {
     label: "主队名称",
     prop: "homeTeamName"
   },
