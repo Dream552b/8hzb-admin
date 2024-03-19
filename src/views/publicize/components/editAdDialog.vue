@@ -603,6 +603,23 @@ defineExpose({
         <el-form-item label="选择比赛" prop="matchID">
           <el-card>
             <el-form :model="form2" inline ref="formRef2">
+              <el-form-item
+                style="margin-bottom: 12px"
+                label=""
+                prop="statusID"
+              >
+                <el-select
+                  v-model="form2.statusID"
+                  clearable
+                  placeholder="比赛状态"
+                >
+                  <el-option label="未开赛" :value="1" />
+                  <el-option label="开赛" :value="2" />
+                  <el-option label="结束" :value="3" />
+                  <el-option label="其他" :value="4" />
+                </el-select>
+              </el-form-item>
+
               <el-form-item style="margin-bottom: 12px" prop="matchID">
                 <el-input v-model="form2.matchID" placeholder="比赛ID" />
               </el-form-item>
