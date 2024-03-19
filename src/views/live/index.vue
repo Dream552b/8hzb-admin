@@ -20,7 +20,8 @@ const form = ref<any>({
   sportsType: 0,
   liveStatus: 0,
   liveName: "",
-  nickName: ""
+  nickName: "",
+  matchID: ""
 });
 const loading = ref<boolean>();
 const addLiveRef = ref<any>();
@@ -80,7 +81,8 @@ const getList = async () => {
     const params = {
       page: pagination.value.pageNum,
       limit: pagination.value.pageSize,
-      ...form.value
+      ...form.value,
+      matchID: +form.value.matchID || ""
     };
     const res: any = await getLiveList(params);
     const {
@@ -236,8 +238,13 @@ const onStartLive = async row => {
         </el-form-item>
         <el-form-item label="高级搜索">
           <el-form-item style="margin-right: 12px">
+            <el-input placeholder="比赛ID" v-model="form.matchID" />
+          </el-form-item>
+
+          <el-form-item style="margin-right: 12px">
             <el-input placeholder="直播间名称" v-model="form.liveName" />
           </el-form-item>
+
           <el-form-item style="margin-right: 12px">
             <el-input placeholder="主播用户名" v-model="form.nickName" />
           </el-form-item>
