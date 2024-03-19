@@ -199,7 +199,7 @@ onBeforeUnmount(() => {
                       v-loading="loadingImg"
                     >
                       <el-image
-                        style="width: 68px; height: 30px"
+                        style="width: 120px; height: 30px"
                         :src="codeImg"
                         @click="generateCodeImg"
                         @load="imgLoaded"
