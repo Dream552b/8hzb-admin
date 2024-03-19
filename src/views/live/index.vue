@@ -238,15 +238,23 @@ const onStartLive = async row => {
         </el-form-item>
         <el-form-item label="高级搜索">
           <el-form-item style="margin-right: 12px">
-            <el-input placeholder="比赛ID" v-model="form.matchID" />
+            <el-input placeholder="比赛ID" v-model="form.matchID" clearable />
           </el-form-item>
 
           <el-form-item style="margin-right: 12px">
-            <el-input placeholder="直播间名称" v-model="form.liveName" />
+            <el-input
+              placeholder="直播间名称"
+              v-model="form.liveName"
+              clearable
+            />
           </el-form-item>
 
           <el-form-item style="margin-right: 12px">
-            <el-input placeholder="主播用户名" v-model="form.nickName" />
+            <el-input
+              placeholder="主播用户名"
+              v-model="form.nickName"
+              clearable
+            />
           </el-form-item>
 
           <!-- <el-form-item style="margin-right: 12px">

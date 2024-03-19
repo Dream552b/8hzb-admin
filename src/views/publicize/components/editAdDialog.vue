@@ -215,7 +215,7 @@ const saveForm = async () => {
     params.imageArr = [params.pic];
   }
 
-  if (!params.footballmatchID && !params.basketballmatchID) {
+  if (!params.footballMatchID && !params.basketballMatchID) {
     loading.value = false;
     ElMessage.error("请先选择要关联的比赛！");
     return;
@@ -257,6 +257,8 @@ const open = (row, type) => {
   openType.value = type;
 
   if (type === "edit" || type === "details") {
+    console.log("row", row);
+
     form.value = {
       ...row
     };
@@ -265,15 +267,19 @@ const open = (row, type) => {
 
     dialogMode.value = "edit";
     title.value = "编辑广告";
+    if (type == "details") {
+      title.value = "查看详情";
+    }
 
     time.value = [
       Math.floor(form.value.startAt * 1000),
       Math.floor(form.value.endAt * 1000)
     ];
     if (form.value.sportsType === 1) {
-      form2.matchID = row.footballmatchID || "";
+      form2.matchID = row.footballMatchID || "";
     } else {
-      form2.matchID = row.basketballmatchID || "";
+      form2.matchID = row.basketballMatchID || "";
+      console.log("form2.matchID", form2.matchID);
     }
     if (form.value.advertisementType === 2) {
       // form.value.imageArr = form.value.imageArr[0].split(",");
@@ -362,8 +368,8 @@ const dialogOpened = () => {
 };
 
 const matchTypeChange = val => {
-  form.value.footballmatchID = "";
-  form.value.basketballmatchID = "";
+  form.value.footballMatchID = "";
+  form.value.basketballMatchID = "";
   formRef2.value?.resetFields();
   pagination.value.pageNum = 1;
   form2.sportsType = val;
@@ -375,10 +381,10 @@ const handleSelectionChange = rows => {
 
   if (form.value.sportsType === 1) {
     // 足球
-    form.value.footballmatchID = rows.map(item => item.id).join(",");
+    form.value.footballMatchID = rows.map(item => item.id).join(",");
     form.value.eventName = rows.map(item => item.competitionName).join(",");
   } else if (form.value.sportsType === 2) {
-    form.value.basketballmatchID = rows.map(item => item.id).join(",");
+    form.value.basketballMatchID = rows.map(item => item.id).join(",");
     form.value.eventName = rows.map(item => item.competitionName).join(",");
   }
   //form.value.matchID = rows.map(item => item.matchID).join(",");
@@ -517,20 +523,37 @@ defineExpose({
                 </el-select>
               </el-form-item>
 
-              <el-form-item style="margin-bottom: 12px" prop="matchID">
-                <el-input v-model="form2.matchID" placeholder="比赛ID" />
+              <el-form-item
+                style="margin-bottom: 12px"
+                prop="matchID"
+                clearable
+              >
+                <el-input
+                  v-model="form2.matchID"
+                  placeholder="比赛ID"
+                  clearable
+                />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
                 <el-input
                   v-model="form2.competitionName"
                   placeholder="比赛名称"
+                  clearable
                 />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
-                <el-input v-model="form2.homeTeamName" placeholder="主队名称" />
+                <el-input
+                  v-model="form2.homeTeamName"
+                  placeholder="主队名称"
+                  clearable
+                />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
-                <el-input v-model="form2.awayTeamName" placeholder="客队名称" />
+                <el-input
+                  v-model="form2.awayTeamName"
+                  placeholder="客队名称"
+                  clearable
+                />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
                 <el-button type="success" @click="searchTable">查询</el-button>
@@ -621,19 +644,32 @@ defineExpose({
               </el-form-item>
 
               <el-form-item style="margin-bottom: 12px" prop="matchID">
-                <el-input v-model="form2.matchID" placeholder="比赛ID" />
+                <el-input
+                  v-model="form2.matchID"
+                  placeholder="比赛ID"
+                  clearable
+                />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
                 <el-input
                   v-model="form2.competitionName"
                   placeholder="比赛名称"
+                  clearable
                 />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
-                <el-input v-model="form2.homeTeamName" placeholder="主队名称" />
+                <el-input
+                  v-model="form2.homeTeamName"
+                  placeholder="主队名称"
+                  clearable
+                />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
-                <el-input v-model="form2.awayTeamName" placeholder="客队名称" />
+                <el-input
+                  v-model="form2.awayTeamName"
+                  placeholder="客队名称"
+                  clearable
+                />
               </el-form-item>
               <el-form-item style="margin-bottom: 12px">
                 <el-button type="success" @click="searchTable">查询</el-button>

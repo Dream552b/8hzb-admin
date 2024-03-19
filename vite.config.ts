@@ -46,21 +46,22 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       proxy: {
         "/api/admin/v2": {
           // 这里填写后端地址
-          target: "http://hg.8hzb.com",
+          // target: "http://hg.8hzb.com",
+          target: "http://192.168.3.52:9002",
           // target: "http://43.129.16.118:9000",
           // target: "http://192.168.3.32:9000",
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, "")
-        },
-        "/api": {
-          // 之前的  不用管
-          // target: "https://tadm.8hzb.com",
-          // target: "http://192.168.3.32:9000",
-          target: "https://admin.8hzb.com",
-          // target: "http://192.168.3.51:8201",
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, "/api")
         }
+        // "/api": {
+        //   // 之前的  不用管
+        //   // target: "https://tadm.8hzb.com",
+        //   // target: "http://192.168.3.32:9000",
+        //   target: "https://admin.8hzb.com",
+        //   // target: "http://192.168.3.51:8201",
+        //   changeOrigin: true,
+        //   rewrite: path => path.replace(/^\/api/, "/api")
+        // }
       }
     },
     plugins: getPluginsList(command, VITE_CDN, VITE_COMPRESSION),
