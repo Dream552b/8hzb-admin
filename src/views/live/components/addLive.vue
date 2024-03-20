@@ -109,7 +109,9 @@ const getList = async () => {
       page: pagination.value.pageNum,
       limit: pagination.value.pageSize,
       sportsType: form.sportsType,
-      ...form2
+      ...form2,
+      startTime: disTime(time.value[0]) || "",
+      endTime: disTime(time.value[1]) || ""
     };
     const res: any =
       form.sportsType == 1
@@ -165,6 +167,15 @@ const search = () => {
 const radioChange = row => {
   form.matchID = row.id;
 };
+
+function disTime(val) {
+  if (!val) return "";
+  // 将日期字符串转换为日期对象
+  var dateObject = new Date(val);
+  // 获取日期对象的时间戳（毫秒为单位）
+  var timestamp = Math.floor(dateObject.getTime() / 1000);
+  return timestamp;
+}
 
 const saveForm = async () => {
   formRef.value.validate(async (valid, fields) => {
@@ -289,6 +300,21 @@ defineExpose({
           </el-select>
         </el-form-item>
       </el-form-item>
+
+      <el-form-item label="" style="margin-right: 12px">
+        <el-date-picker
+          v-model="time"
+          type="daterange"
+          start-placeholder="开赛时间"
+          end-placeholder="结束时间"
+          value-format="YYYY-MM-DD"
+          :default-time="[
+            new Date(2000, 1, 1, 0, 0, 0),
+            new Date(2000, 2, 1, 23, 59, 59)
+          ]"
+        />
+      </el-form-item>
+
       <el-form-item>
         <el-button type="success" @click="search">搜索</el-button>
       </el-form-item>

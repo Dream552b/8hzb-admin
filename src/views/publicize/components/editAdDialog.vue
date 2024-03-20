@@ -405,6 +405,7 @@ defineExpose({
       <el-form-item label="广告推送类型" prop="advertisementType">
         <el-radio-group v-model="form.advertisementType" class="ml-4">
           <el-radio :label="1" size="large">文字滚动</el-radio>
+          <!-- <el-radio :label="4" size="large">黑板广告</el-radio> -->
           <el-radio :label="2" size="large">宣传图</el-radio>
           <el-radio :label="3" size="large">二维码</el-radio>
         </el-radio-group>
@@ -445,7 +446,7 @@ defineExpose({
       <el-form-item
         label="文字内容"
         prop="content"
-        v-if="form.advertisementType === 1"
+        v-if="form.advertisementType === 1 || form.advertisementType === 4"
       >
         <el-input
           v-model="form.content"
