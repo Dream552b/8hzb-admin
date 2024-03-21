@@ -110,8 +110,8 @@ const getList = async () => {
       limit: pagination.value.pageSize,
       sportsType: form.sportsType,
       ...form2,
-      startTime: disTime(time.value[0]) || "",
-      endTime: disTime(time.value[1]) || ""
+      startTime: disTime(time.value && time.value[0]) || "",
+      endTime: disTime(time.value && time.value[1]) || ""
     };
     const res: any =
       form.sportsType == 1

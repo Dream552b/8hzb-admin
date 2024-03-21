@@ -102,10 +102,11 @@ const getList = async () => {
       limit: pagination.value.pageSize,
       ...form.value,
       matchID: +form.value.matchID || "",
-      startTime: disTime(time.value[0]) || "",
-      endTime: disTime(time.value[1]) || ""
+      startTime: disTime(time.value && time.value[0]) || "",
+      endTime: disTime(time.value && time.value[1]) || ""
     };
     const res: any = await getLiveList(params);
+    loading.value = true;
     const {
       data: { records, total }
     } = res;
@@ -278,7 +279,7 @@ const onStartLive = async row => {
             />
           </el-form-item>
 
-          <!-- <el-form-item label="" style="margin-right: 12px">
+          <el-form-item label="" style="margin-right: 12px">
             <el-date-picker
               v-model="time"
               type="daterange"
@@ -290,7 +291,7 @@ const onStartLive = async row => {
                 new Date(2000, 2, 1, 23, 59, 59)
               ]"
             />
-          </el-form-item> -->
+          </el-form-item>
 
           <el-form-item>
             <el-button type="primary" @click="search">搜索</el-button>

@@ -20,7 +20,8 @@ const form = reactive({
   awayTeamName: "",
   eventName: "",
   matchType: 1,
-  type: 0
+  type: 0,
+  matchID: ""
 });
 const time = ref<any>([]);
 
@@ -180,6 +181,7 @@ const getList = async () => {
       page: pagination.value.pageNum,
       limit: pagination.value.pageSize,
       ...form,
+      matchID: +form.matchID || 0,
       _: new Date().getTime()
     };
     const isChange =
@@ -263,6 +265,11 @@ const reset = () => {
           <el-option label="二维码" :value="3" />
         </el-select>
       </el-form-item>
+
+      <el-form-item label="比赛ID">
+        <el-input placeholder="比赛ID" v-model="form.matchID" clearable />
+      </el-form-item>
+
       <el-form-item>
         <el-button type="success" @click="getList">查询</el-button>
         <el-button type="success" @click="reset">重置</el-button>
