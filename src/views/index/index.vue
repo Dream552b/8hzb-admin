@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { getMainInfo } from "@/api/index";
+import { getMainInfo, getDownloadLog } from "@/api/index";
 import DataCard from "./components/dataCard.vue";
 import StatCard from "./components/statCard.vue";
 defineOptions({
@@ -164,23 +164,23 @@ const liveOnlineUserCount = ref<number>(0);
 const downloadStatData = ref<any>([
   {
     label: "今日下载总量(去重)",
-    prop: "totalDownloadCount"
+    prop: "todayDownloadNum"
   },
   {
     label: "Android",
-    prop: "androidDownloadCount"
+    prop: "androidDownloadNum"
   },
   {
     label: "iOS",
-    prop: "iosDownloadCount"
+    prop: "iosDownloadNum"
   },
   {
     label: "昨日",
-    prop: "totalYesterdayDownloadCount"
+    prop: "yesterdayDownloadNum"
   },
   {
     label: "本月",
-    prop: "totalMonthDownloadCount"
+    prop: "monthDownloadNum"
   }
 ]);
 
@@ -242,8 +242,21 @@ const getData = async () => {
     loading.value = false;
   }
 };
+
+const ongetDownloadLog = async () => {
+  const { data, code } = await getDownloadLog();
+  if (code !== 200) return;
+
+  downloadStatData.value = downloadStatData.value.map(item => {
+    return {
+      ...item,
+      value: data[item.prop]
+    };
+  });
+};
 onMounted(() => {
   // getData();
+  ongetDownloadLog();
 });
 </script>
 
@@ -271,7 +284,7 @@ onMounted(() => {
       </div>
     </el-card>
     <!-- h5 webapp 数据面板 -->
-    <el-card
+    <!-- <el-card
       style="margin-top: 20px"
       header="H5 WEBAPP"
       shadow="never"
@@ -292,9 +305,9 @@ onMounted(() => {
           />
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <!-- 注册用户 -->
-    <el-card
+    <!-- <el-card
       style="margin-top: 20px"
       header="注册用户"
       shadow="never"
@@ -310,7 +323,7 @@ onMounted(() => {
           />
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <!-- 下载统计 -->
     <el-card
       style="margin-top: 20px"

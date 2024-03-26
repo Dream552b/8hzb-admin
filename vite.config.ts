@@ -46,7 +46,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       proxy: {
         "/api/admin/v2": {
           // 这里填写后端地址
-          target: "https://admin.8hzb.com",
+          // target: "https://admin.8hzb.com",
+          target: "https://admin.8hzb.chat",
           // target: "http://192.168.3.52:9002",
           // target: "http://43.129.16.118:9000",
           // target: "http://192.168.3.32:9000",

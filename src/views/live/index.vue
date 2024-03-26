@@ -72,7 +72,6 @@ const columns = ref<any>([
     label: "状态",
     prop: "liveStatus",
     formatter: row => {
-      console.log("liveStatus", row.liveStatus);
       if (row.liveStatus === 1) return "未开始";
       if (row.liveStatus === 2) return "直播中";
       if (row.liveStatus === 3) return "已结束";
@@ -133,6 +132,19 @@ const search = () => {
 
 const add = () => {
   addLiveRef.value.open();
+};
+
+const reset = () => {
+  formRef.value.resetFields();
+
+  form.value.sportsType = 0;
+  form.value.liveStatus = 0;
+  form.value.liveName = "";
+  form.value.nickName = "";
+  form.value.matchID = "";
+  time.value = "";
+
+  getList();
 };
 
 const refresh = () => {
@@ -223,7 +235,7 @@ const onStartLive = async row => {
         matchLiveID: row.id,
         liveName: row.liveName,
         nickName: row.nickName,
-        liveStatus: row.liveStatus === 1 ? 2 : 1
+        liveStatus: row.liveStatus === 1 ? 2 : 3
       });
       if (res.code === 200) {
         ElMessage({
@@ -295,6 +307,7 @@ const onStartLive = async row => {
 
           <el-form-item>
             <el-button type="primary" @click="search">搜索</el-button>
+            <el-button type="primary" @click="reset">重置</el-button>
           </el-form-item>
         </el-form-item>
         <el-form-item>

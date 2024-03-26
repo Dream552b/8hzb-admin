@@ -248,9 +248,7 @@ const batchDel = () => {
 
 const reset = () => {
   formRef.value.resetFields();
-  pagination.value.pageNum = 1;
-  pagination.value.pageSize = 10;
-  pagination.value.total = 0;
+  form.matchID = "";
   getList();
 };
 </script>

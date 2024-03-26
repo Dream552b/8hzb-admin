@@ -18,3 +18,9 @@ export const getCaptchaImage = params => {
     params
   });
 };
+
+export const getDownloadLog = () => {
+  return http.request<Result>("get", "/admin/v2/downloadLog/statistics", {
+    params: {}
+  });
+};
